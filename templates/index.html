@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registro de Gastos en el Restaurante</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Registro de Gastos en el Restaurante</h1>
+    <table>
+        <tr>
+            <th>Elemento</th>
+            <th>Cantidad</th>
+            <th>Precio Pagado</th>
+        </tr>
+        {% for gasto in gastos %}
+        <tr>
+            <td>{{ gasto.elemento }}</td>
+            <td>{{ gasto.cantidad }}</td>
+            <td>{{ gasto.precio }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h2>Agregar Gasto</h2>
+    <form action="/agregar_gasto" method="post">
+        <label for="elemento">Elemento:</label>
+        <input type="text" id="elemento" name="elemento" required>
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" id="cantidad" name="cantidad" required>
+        <label for="precio">Precio Pagado:</label>
+        <input type="number" step="0.01" id="precio" name="precio" required>
+        <button type="submit">Agregar</button>
+    </form>
+</body>
+</html>
